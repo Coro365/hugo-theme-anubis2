@@ -6,6 +6,17 @@
 <meta name="theme-name" content="Anubis2">
 <meta name="fediverse:creator" content="@Coro@mstdn.maud.io">
 
+{{- if .IsPage }}
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="article:published_time" content="{{ .Date }}">
+  {{ with .Lastmod }}
+    <meta property="article:modified_time" content="{{ . }}">
+  {{ end }}
+{{- end }}
+
+
 {{ partial "title.html" . }}
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end -}}">
 
